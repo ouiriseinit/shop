@@ -21,7 +21,7 @@ const ShippingForm = ({
 
   const handleShippingForm: SubmitHandler<ShippingFormInputs> = (data) => {
     setShippingForm(data);
-    router.push("/cart?step=3", { scroll: false });
+    router.push("/shop/cart?step=3", { scroll: false });
   };
 
   return (
