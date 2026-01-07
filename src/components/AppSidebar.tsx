@@ -122,7 +122,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <Link href="/products">
                     <Shirt />
-                    See All Products
+                    All Products
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -170,7 +170,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <Link href="/users">
                     <User />
-                    See All Users
+                    All Users
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -203,7 +203,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <Link href="/users">
                     <ShoppingBasket />
-                    See All Transactions
+                    All Transactions
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

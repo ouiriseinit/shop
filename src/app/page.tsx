@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState } from 'react';
+import Link from 'next/link'
+import React, { useState } from 'react'
 
 export default function OuiriseTactical() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const toggleContactForm = () => setIsOpen(!isOpen);
+  const toggleContactForm = () => setIsOpen(!isOpen)
 
   return (
     <div className="bg-[#0a0a0a] text-white font-mono selection:bg-red-900 selection:text-white min-h-screen cursor-crosshair relative">
@@ -24,9 +25,10 @@ export default function OuiriseTactical() {
         </div>
         <nav className="hidden md:flex space-x-8 text-xs font-bold tracking-widest">
           <a href="#services" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">SERVICES</a>
-          <a href="#portfolio" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">DEPLOYMENTS</a>
+          <Link href="/shop" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">SHOP</Link>
+          <Link href="/dashboard"  className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">DASHBOARD</Link>
           <a href="#plans" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">PLANS</a>
-          <button onClick={toggleContactForm} className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">CONTACT_HQ</button>
+          {/* <button onClick={toggleContactForm}>CONTACT</button */}
         </nav>
         <div className="flex space-x-4 text-xl">
           <a href="https://github.com/ouiriseinit" className="hover:text-red-600"><i className="fab fa-github"></i></a>
@@ -47,12 +49,13 @@ export default function OuiriseTactical() {
             Using agentic workflows and modern cloud architecture, we develop the tools innovators need to lead.
           </p>
           <div className="mt-10">
-            <button 
+            {/* <button 
               onClick={toggleContactForm}
               className="bg-red-800 hover:bg-red-600 text-white font-bold py-4 px-10 uppercase transition-all [clip-path:polygon(10%_0,100%_0,90%_100%,0%_100%)]"
             >
               Request Deployment
-            </button>
+            </button> */}
+            <a href="#services" className="bg-red-800 hover:bg-red-600 text-white font-bold py-4 px-10 uppercase transition-all [clip-path:polygon(10%_0,100%_0,90%_100%,0%_100%)]">See More</a>
           </div>
         </section>
 
@@ -83,14 +86,15 @@ export default function OuiriseTactical() {
             <p className="text-red-800 text-xs font-bold uppercase tracking-widest underline underline-offset-8">Case_Files_v1.0</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { name: "Xavier Austin Group LLC", link: "./xavieraustingroup.html" },
-              { name: "Maleek Music", link: "./maleekmusic.html" },
-              { name: "Our Style Apparel", link: "./ourstyle.html" },
+            {
+              JSON.parse(JSON.stringify([
+              { name: "Xavier Austin Group LLC", link: "https://ouiriseinit.github.io/xavieraustingroup.html" },
+              { name: "Maleek Music", link: "https://ouiriseinit.github.io/maleekmusic.html" },
+              { name: "E-commerce Quickstart", link: "/shop" },
               { name: "Business Cents LLC", link: "./businesscents.html" },
-              { name: "theJugoBar", link: "https://ouiriseinit.github.io/thejugobar/" },
-              { name: "Cultural Gold", link: "https://ouiriseinit.github.io/culturalgold/" }
-            ].map((project, idx) => (
+              { name: "Cultural Gold", link: "https://ouiriseinit.github.io/culturalgold/" },
+              { name: "Analytics Dashboard", link: "/dashboard" },
+            ])).map((project: { name: string, link: string }, idx: number) => (
               <a 
                 key={idx}
                 href={project.link}
@@ -161,8 +165,8 @@ export default function OuiriseTactical() {
       {/* Tactical Footer */}
       <footer className="border-t border-[#333] py-10 mt-20 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] font-bold text-gray-600 tracking-widest">
-          <p>COPYRIGHT © 2026 OUIRISE INITIATIVE // ALL SYSTEMS NOMINAL</p>
-          <p className="mt-4 md:mt-0 text-red-900">ENCRYPTED_CONNECTION_SECURED</p>
+          <p>COPYRIGHT © 2026 OUIRISE INITIATIVE</p>
+          {/* <p className="mt-4 md:mt-0 text-red-900">ENCRYPTED_CONNECTION_SECURED</p> */}
         </div>
       </footer>
 
@@ -174,11 +178,11 @@ export default function OuiriseTactical() {
               onClick={toggleContactForm}
               className="absolute -top-4 -right-4 bg-red-800 text-white w-8 h-8 font-black rounded-none flex items-center justify-center"
             >X</button>
-            <h3 className="text-2xl font-black uppercase mb-6 tracking-tighter">Initiate Deployment Contact</h3>
+            <h3 className="text-2xl font-black uppercase mb-6 tracking-tighter">Contact</h3>
             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <input placeholder="ENTITY_NAME" type="text" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase" />
-              <input placeholder="ENTITY_EMAIL" type="email" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase" />
-              <textarea placeholder="PROJECT_SPECIFICATIONS" className="w-full p-3 h-32 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase resize-none"></textarea>
+              <input placeholder="NAME" type="text" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase" />
+              <input placeholder="EMAIL" type="email" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase" />
+              <textarea placeholder="PROJECT REQUIREMENTS" className="w-full p-3 h-32 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase resize-none"></textarea>
               <button className="w-full bg-red-800 hover:bg-red-600 py-3 font-black uppercase tracking-widest transition-all">
                 Send Request
               </button>
@@ -187,5 +191,5 @@ export default function OuiriseTactical() {
         </div>
       )}
     </div>
-  );
+  )
 }

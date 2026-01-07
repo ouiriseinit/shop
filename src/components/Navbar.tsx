@@ -31,7 +31,7 @@ const Navbar = () => {
   return pathname.startsWith('/shop') ? (
     <nav className="w-full flex items-center justify-between border-b border-gray-200 p-4">
       {/* LEFT */}
-      <Link href="/storefront" className="flex items-center">
+      <Link href="/" className="flex items-center">
         <Image
           src="/logo.png"
           alt="OuiRise"

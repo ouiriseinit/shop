@@ -152,19 +152,19 @@ const CardList = ({ title }: { title: string }) => {
                 key={item.id}
                 className="flex-row items-center justify-between gap-4 p-4"
               >
-                <div className="w-12 h-12 rounded-sm relative overflow-hidden">
+                {/* <div className="w-12 h-12 rounded-sm relative overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     className="object-cover"
                   />
-                </div>
+                </div> */}
                 <CardContent className="flex-1 p-0">
                   <CardTitle className="text-sm font-medium">
-                    {item.title}
+                    {item.badge}
                   </CardTitle>
-                  <Badge variant="secondary">{item.badge}</Badge>
+                  <Badge variant="secondary">{item.title}</Badge>
                 </CardContent>
                 <CardFooter className="p-0">${item.count /1000}K</CardFooter>
               </Card>
