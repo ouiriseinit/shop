@@ -55,10 +55,10 @@ export default function OuiriseTactical() {
         <div className="border-2 border-red-800 px-3 py-1">
           <span className="font-bold text-2xl tracking-tighter uppercase italic">Ouirise</span>
         </div>
-        <nav className="hidden md:flex space-x-8 text-xs font-bold tracking-widest">
+        <nav className="flex space-x-8 text-xs font-bold tracking-widest">
           <a href="#services" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">SERVICES</a>
-          <Link href="/shop" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">SHOP</Link>
-          <Link href="/dashboard"  className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">DASHBOARD</Link>
+          {/* <Link href="/shop" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">SHOP</Link>
+          <Link href="/dashboard"  className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">DASHBOARD</Link> */}
           {/* <a href="#plans" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">PLANS</a> */}
           <button onClick={toggleContactForm}>CONTACT</button>
         </nav>
@@ -68,7 +68,7 @@ export default function OuiriseTactical() {
         </div>
       </header>
 
-      <main className="relative z-10 px-2 max-w-7xl mx-auto">
+      <main className="relative z-10 px-4 max-w-7xl mx-auto">
         {/* Hero Section */}
         <section className="min-h-[70vh] flex flex-col justify-center border-b border-[#333] py-20">
           <p className="text-red-600 font-bold mb-4 tracking-widest">// SYSTEM_INITIALIZED: 2025</p>
