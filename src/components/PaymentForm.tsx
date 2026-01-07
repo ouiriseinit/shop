@@ -16,8 +16,9 @@ const PaymentForm = () => {
 
   const router = useRouter();
 
-  const handlePaymentForm: SubmitHandler<PaymentFormInputs> = (data) => {
-    
+  const handlePaymentForm /*SubmitHandler<PaymentFormInputs>*/ = (data: any) => {
+    console.log(data)
+    router.push('/')
   };
 
   return (

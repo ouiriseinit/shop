@@ -19,7 +19,7 @@ export default function OuiriseTactical() {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#333] z-50 px-6 py-4 flex justify-between items-center">
+      <header className="bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#333] z-50 px-4 py-4 flex justify-between items-center">
         <div className="border-2 border-red-800 px-3 py-1">
           <span className="font-bold text-2xl tracking-tighter uppercase italic">Ouirise</span>
         </div>
@@ -36,7 +36,7 @@ export default function OuiriseTactical() {
         </div>
       </header>
 
-      <main className="relative z-10 px-6 max-w-7xl mx-auto">
+      <main className="relative z-10 px-2 max-w-7xl mx-auto">
         {/* Hero Section */}
         <section className="min-h-[70vh] flex flex-col justify-center border-b border-[#333] py-20">
           <p className="text-red-600 font-bold mb-4 tracking-widest">// SYSTEM_INITIALIZED: 2025</p>
@@ -83,7 +83,7 @@ export default function OuiriseTactical() {
         <section id="portfolio" className="py-20 border-b border-[#333]">
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-4xl font-black uppercase">Recent Deployments</h2>
-            <p className="text-red-800 text-xs font-bold uppercase tracking-widest underline underline-offset-8">Case_Files_v1.0</p>
+            {/* <p className="text-red-800 text-xs font-bold uppercase tracking-widest underline underline-offset-8">Case_Files_v1.0</p> */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
