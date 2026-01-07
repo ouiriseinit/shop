@@ -1,12 +1,44 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
+import { supabase } from '@/lib/supabase'
+import Error from 'next/error'
+import { NextApiResponse } from 'next'
+import { useRouter } from 'next/navigation'
 
 export default function OuiriseTactical() {
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  // 1. Form State
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    organization: ''
+  })
 
   const toggleContactForm = () => setIsOpen(!isOpen)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    fetch('/api/contact/send', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+    })
+    .then(() => {
+      router.push('/dashboard')
+    })
+    .catch(err => console.log(err))
+  }
+
+  
 
   return (
     <div className="bg-[#0a0a0a] text-white font-mono selection:bg-red-900 selection:text-white min-h-screen cursor-crosshair relative">
@@ -27,8 +59,8 @@ export default function OuiriseTactical() {
           <a href="#services" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">SERVICES</a>
           <Link href="/shop" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">SHOP</Link>
           <Link href="/dashboard"  className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">DASHBOARD</Link>
-          <a href="#plans" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">PLANS</a>
-          {/* <button onClick={toggleContactForm}>CONTACT</button */}
+          {/* <a href="#plans" className="hover:text-red-600 transition-colors uppercase underline decoration-red-800 underline-offset-4">PLANS</a> */}
+          <button onClick={toggleContactForm}>CONTACT</button>
         </nav>
         <div className="flex space-x-4 text-xl">
           <a href="https://github.com/ouiriseinit" className="hover:text-red-600"><i className="fab fa-github"></i></a>
@@ -122,7 +154,7 @@ export default function OuiriseTactical() {
               <h3 className="text-2xl font-black mb-2 uppercase">PROTOTYPE</h3>
               <p className="text-xs text-gray-400 leading-relaxed mb-6 uppercase">Single Page Application</p>
               <div className="text-left w-full space-y-3 mb-8">
-                {['Modern Cloud Deployment', 'Responsive Design', 'Speed Optimized'].map(item => (
+                {[' Cloud Deployment', 'Responsive Design', 'Speed Optimized'].map(item => (
                   <div key={item} className="text-[10px] text-gray-500 flex items-center gap-2">
                     <span className="text-red-800 italic font-black">[√]</span> {item.toUpperCase()}
                   </div>
@@ -179,12 +211,14 @@ export default function OuiriseTactical() {
               className="absolute -top-4 -right-4 bg-red-800 text-white w-8 h-8 font-black rounded-none flex items-center justify-center"
             >X</button>
             <h3 className="text-2xl font-black uppercase mb-6 tracking-tighter">Contact</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <input placeholder="NAME" type="text" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase" />
-              <input placeholder="EMAIL" type="email" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase" />
-              <textarea placeholder="PROJECT REQUIREMENTS" className="w-full p-3 h-32 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase resize-none"></textarea>
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <input onChange={handleChange} name="name" placeholder="Name" type="text" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs" />
+              <input onChange={handleChange} name="email" placeholder="Email" type="email" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs" />
+              <input onChange={handleChange} name="phone" placeholder="Phone" type="tel" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs" />
+              <input onChange={handleChange} name="organization" placeholder="Organization or Business" type="text" className="w-full p-3 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs" />
+              {/* <textarea onChange={handleChange} placeholder="PROJECT REQUIREMENTS" placeholder="Optional..." className="w-full p-3 h-32 bg-black border border-[#333] text-red-600 focus:border-red-800 outline-none text-xs uppercase resize-none"></textarea> */}
               <button className="w-full bg-red-800 hover:bg-red-600 py-3 font-black uppercase tracking-widest transition-all">
-                Send Request
+                Send
               </button>
             </form>
           </div>
