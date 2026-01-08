@@ -62,3 +62,5 @@ export type CartStoreActionsType = {
   removeFromCart: (product: CartItemType) => void;
   clearCart: () => void;
 };
+
+export type TodoType = {id:string, title:string, content: string, complete:boolean }
