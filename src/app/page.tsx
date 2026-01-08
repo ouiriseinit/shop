@@ -7,7 +7,7 @@ import Error from 'next/error'
 import { NextApiResponse } from 'next'
 import { useRouter } from 'next/navigation'
 
-export default function OuiriseTactical() {
+export default function OuiRise() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   // 1. Form State
@@ -198,7 +198,7 @@ export default function OuiriseTactical() {
       {/* Tactical Footer */}
       <footer className="border-t border-[#333] py-10 mt-20 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] font-bold text-gray-600 tracking-widest">
-          <p>COPYRIGHT © 2026 OUIRISE INITIATIVE</p>
+          <p>COPYRIGHT © 2025 OUIRISE INITIATIVE</p>
           {/* <p className="mt-4 md:mt-0 text-blue-900">ENCRYPTED_CONNECTION_SECURED</p> */}
         </div>
       </footer>
@@ -213,10 +213,10 @@ export default function OuiriseTactical() {
             >X</button>
             <h3 className="text-2xl font-black uppercase mb-6 tracking-tighter">Contact</h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
-              <input onChange={handleChange} name="name" placeholder="Name" type="text" className="w-full p-3 bg-black border border-[#333] text-blue-600 focus:border-blue-800 outline-none text-xs" />
-              <input onChange={handleChange} name="email" placeholder="Email" type="email" className="w-full p-3 bg-black border border-[#333] text-blue-600 focus:border-blue-800 outline-none text-xs" />
-              <input onChange={handleChange} name="phone" placeholder="Phone" type="tel" className="w-full p-3 bg-black border border-[#333] text-blue-600 focus:border-blue-800 outline-none text-xs" />
-              <input onChange={handleChange} name="organization" placeholder="Organization or Business" type="text" className="w-full p-3 bg-black border border-[#333] text-blue-600 focus:border-blue-800 outline-none text-xs" />
+              <input onChange={handleChange} name="name" placeholder="Name" type="text" className="w-full p-3 bg-black border border-[#333] text-white-600 focus:border-blue-800 outline-none text-xs" />
+              <input onChange={handleChange} name="email" placeholder="Email" type="email" className="w-full p-3 bg-black border border-[#333] text-white-600 focus:border-blue-800 outline-none text-xs" />
+              <input onChange={handleChange} name="phone" placeholder="Phone" type="tel" className="w-full p-3 bg-black border border-[#333] text-white-600 focus:border-blue-800 outline-none text-xs" />
+              <input onChange={handleChange} name="organization" placeholder="Organization or Business" type="text" className="w-full p-3 bg-black border border-[#333] text-white-600 focus:border-blue-800 outline-none text-xs" />
               {/* <textarea onChange={handleChange} placeholder="PROJECT REQUIREMENTS" placeholder="Optional..." className="w-full p-3 h-32 bg-black border border-[#333] text-blue-600 focus:border-blue-800 outline-none text-xs uppercase resize-none"></textarea> */}
               <button className="w-full bg-blue-800 hover:bg-blue-600 py-3 font-black uppercase tracking-widest transition-all">
                 Send
