@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OuiRise Shop",
-  description: "Ecommerce and Dashboard",
+  title: "OuiRise Initiative",
+  description: "Custom Tech Solutions",
 };
 
 export default async function RootLayout({
