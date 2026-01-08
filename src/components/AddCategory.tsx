@@ -28,14 +28,23 @@ const formSchema = z.object({
 const AddCategory = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+    },
   });
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    console.log(data);
+    fetch('/api/categories', { method: 'POST', body: JSON.stringify(data)})
+  };
+
   return (
     <SheetContent>
       <SheetHeader>
         <SheetTitle className="mb-4">Add Category</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
-            <form className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
                 control={form.control}
                 name="name"

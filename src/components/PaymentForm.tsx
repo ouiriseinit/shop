@@ -17,8 +17,9 @@ const PaymentForm = () => {
   const router = useRouter();
 
   const handlePaymentForm: SubmitHandler<PaymentFormInputs> = (data) => {
-    
-    router.push('/')
+    fetch('/api/pay', { method: 'POST', body: JSON.stringify(data)})
+    .catch(error => console.log(error))
+    router.push('/') 
   };
 
   return (
