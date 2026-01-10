@@ -3,7 +3,7 @@ import { ProductType } from "@/types";
 import Image from "next/image";
 
 // TEMPORARY
-const product: ProductType = {
+let product:ProductType = {
   id: 1,
   name: "Adidas CoreFit T-Shirt",
   shortDescription:
@@ -17,17 +17,23 @@ const product: ProductType = {
     gray: "/products/1g.png",
     purple: "/products/1p.png",
     green: "/products/1gr.png",
-  },
-};
+  }
+}
 
 export const generateMetadata = async ({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) => {
-  // TODO: get the product from db
-  // TEMPORARY
   const { id } = await params;
+
+  fetch('/api/products/id')
+  .then(res => res.json())
+  .then(data => {
+    product = data
+  })
+  .catch(error => console.log({error}))
+ 
   return {
     title: product.name,
     description: product.description,
@@ -51,7 +57,7 @@ const ProductPage = async ({
       {/* IMAGE */}
       <div className="w-full lg:w-5/12 relative aspect-[2/3]">
         <Image
-          src={product.images[selectedColor]}
+          src={product.images[selectedColor] || '/placeholder.jpg'}
           alt={product.name}
           fill
           className="object-contain rounded-md"

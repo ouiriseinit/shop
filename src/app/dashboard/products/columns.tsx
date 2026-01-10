@@ -54,7 +54,7 @@ export const columns: ColumnDef<Product>[] = [
       return (
         <div className="w-9 h-9 relative">
           <Image
-            src={product.images[product.colors[0]]}
+            src={product.images[product.colors[0]] || '/placeholder.jpg'}
             alt={product.name}
             fill
             className="rounded-full object-cover"
@@ -82,7 +82,7 @@ export const columns: ColumnDef<Product>[] = [
     },
   },
   {
-    accessorKey: "shortDescription",
+    accessorKey: "short_description",
     header: "Description",
   },
   {
@@ -106,9 +106,9 @@ export const columns: ColumnDef<Product>[] = [
               Copy product ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={`/products/${product.id}`}>View customer</Link>
-            </DropdownMenuItem>
+            {/* <DropdownMenuItem>
+              <Link href={`/dashboard/products/${product.id}`}>View customer</Link>
+            </DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       );

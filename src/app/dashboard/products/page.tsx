@@ -1,5 +1,8 @@
+'use client'
+
 import { Product, columns } from "./columns";
 import { DataTable } from "./data-table";
+import { useState, useEffect } from "react";
 
 const getData = async (): Promise<Product[]> => {
   return [
@@ -114,14 +117,26 @@ const getData = async (): Promise<Product[]> => {
   ];
 };
 
-const PaymentsPage = async () => {
-  const data = await getData();
+const PaymentsPage = () => {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch('/api/products')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      setProducts(data)
+    })
+  }, [])
+
+  // const data = await getData();
+
   return (
-    <div className="">
+    <div className="px-2">
       <div className="mb-8 px-4 py-2 bg-secondary rounded-md">
         <h1 className="font-semibold">All Products</h1>
       </div>
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={products} />
     </div>
   );
 };

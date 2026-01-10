@@ -29,7 +29,7 @@ import {
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
-  amount: z.number().min(1, { message: "Amount must be at least 1!" }),
+  amount: z.coerce.number().min(1, { message: "Amount must be at least 1!" }), // Use coerce to handle string-to-number
   userId: z.string().min(1, { message: "User Id is required!" }),
   status: z.enum(["pending", "processing", "success", "failed"]),
 });
@@ -37,14 +37,41 @@ const formSchema = z.object({
 const AddOrder = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      amount: 0,
+      userId: "",
+      status: "pending",
+    },
   });
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      console.log("Submitting data:", data);
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Handle success (e.g., close sheet, toast notification)
+        console.log("Order created successfully");
+      }
+    } catch (error) {
+      console.error("Failed to submit:", error);
+    }
+  };
+
   return (
     <SheetContent>
       <SheetHeader>
         <SheetTitle className="mb-4">Add Order</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
-            <form className="space-y-8">
+            {/* 1. FIX: Added onSubmit handler here */}
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
                 control={form.control}
                 name="amount"
@@ -52,7 +79,8 @@ const AddOrder = () => {
                   <FormItem>
                     <FormLabel>Amount</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      {/* 2. FIX: Ensure type="number" */}
+                      <Input type="number" {...field} />
                     </FormControl>
                     <FormDescription>
                       Enter the amount of the order.
@@ -82,7 +110,11 @@ const AddOrder = () => {
                   <FormItem>
                     <FormLabel>Status</FormLabel>
                     <FormControl>
-                      <Select>
+                      {/* 3. FIX: Link Select to field values */}
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select a status" />
                         </SelectTrigger>

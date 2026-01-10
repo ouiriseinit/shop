@@ -81,12 +81,12 @@ const sizes = [
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Product name is required!" }),
-  shortDescription: z
+  short_description: z
     .string()
     .min(1, { message: "Short description is required!" })
     .max(60),
   description: z.string().min(1, { message: "Description is required!" }),
-  price: z.number().min(1, { message: "Price is required!" }),
+  price: z.string().min(1, { message: "Price is required!" }),
   category: z.enum(categories),
   sizes: z.array(z.enum(sizes)),
   colors: z.array(z.enum(colors)),
@@ -96,7 +96,42 @@ const formSchema = z.object({
 const AddProduct = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      short_description: "",
+      description: "",
+      price: "",
+      category: undefined,
+      sizes: [],
+      colors: [],
+      images: {},
+    },
   });
+
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const cleanedData = {
+    name: data.name,
+    short_description: data.short_description || "", // Ensure it's not null
+    description: data.description || "",
+    price: data.price,
+    category: data.category,
+    sizes: data.sizes,
+    colors: data.colors,
+    images: data.images,
+  };
+
+  if (Object.keys(cleanedData.images).length === 0) {
+    cleanedData.images = { 'black': '/placeholder.jpg' };
+  }
+
+  fetch('/api/products', { 
+    method: 'POST', 
+    body: JSON.stringify(cleanedData),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .catch(error => console.log(error))
+};
+
   return (
     <SheetContent>
       <ScrollArea className="h-screen">
@@ -104,7 +139,7 @@ const AddProduct = () => {
           <SheetTitle className="mb-4">Add Product</SheetTitle>
           <SheetDescription asChild>
             <Form {...form}>
-              <form className="space-y-8">
+              <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                   control={form.control}
                   name="name"
@@ -123,7 +158,7 @@ const AddProduct = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="shortDescription"
+                  name="short_description"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Short Description</FormLabel>
@@ -160,7 +195,7 @@ const AddProduct = () => {
                     <FormItem>
                       <FormLabel>Price</FormLabel>
                       <FormControl>
-                        <Input type="number" {...field} />
+                        <Input type="text" {...field} />
                       </FormControl>
                       <FormDescription>
                         Enter the price of the product.
@@ -176,7 +211,7 @@ const AddProduct = () => {
                     <FormItem>
                       <FormLabel>Category</FormLabel>
                       <FormControl>
-                        <Select>
+                        <Select onValueChange={field.onChange} value={field.value}>
                           <SelectTrigger>
                             <SelectValue placeholder="Select a category" />
                           </SelectTrigger>

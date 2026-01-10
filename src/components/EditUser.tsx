@@ -29,40 +29,51 @@ import {
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
-  fullName: z
+  name: z
     .string()
     .min(2, { message: "Full name must be at least 2 characters!" })
     .max(50),
   email: z.string().email({ message: "Invalid email address!" }),
-  phone: z.string().min(10).max(15),
-  address: z.string().min(2),
-  city: z.string().min(2),
+  phone: z.string().min(9),//.max(15),
+  organization: z.string().min(1)
 });
-
-const EditUser = () => {
+type CustomerType = {
+      id:string,
+      name:string,
+      email:string,
+      phone:string,
+      organization:string
+    }
+const EditUser = ({ customer }:{ customer:CustomerType }) => {
+  const { name, email, phone, organization } = customer
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: "John Doe",
-      email: "john.doe@gmail.com",
-      phone: "+1 234 5678",
-      address: "123 Main St",
-      city: "New York",
+      name,
+      email,
+      phone,
+      organization
     },
   });
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+        console.log(data);
+        fetch('/api/customers', { method: 'PUT', body: JSON.stringify(data)})
+        .catch(error => console.log(error))
+      };
+
   return (
     <SheetContent>
       <SheetHeader>
         <SheetTitle className="mb-4">Edit User</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
-            <form className="space-y-8">
+            <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
-                name="fullName"
+                name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -107,31 +118,15 @@ const EditUser = () => {
               />
               <FormField
                 control={form.control}
-                name="address"
+                name="organization"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Address</FormLabel>
+                    <FormLabel>Organization</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter user address (optional)
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="city"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>City</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      Enter user city (optional)
+                      Enter user organization (optional)
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

@@ -89,8 +89,8 @@ const Navbar = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src="https://avatars.githubusercontent.com/u/ouiriseinit" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src="https://avatars.githubusercontent.com/u/233995217?v=4" />
+              <AvatarFallback>O</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent sideOffset={10}>

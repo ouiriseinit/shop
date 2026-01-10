@@ -1,0 +1,19 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/categories/route": "/api/categories",
+  "/api/contact/send/route": "/api/contact/send",
+  "/api/contact/route": "/api/contact",
+  "/api/todos/route": "/api/todos",
+  "/api/products/route": "/api/products",
+  "/favicon.ico/route": "/favicon.ico",
+  "/dashboard/customers/page": "/dashboard/customers",
+  "/dashboard/page": "/dashboard",
+  "/dashboard/customers/[id]/page": "/dashboard/customers/[id]",
+  "/dashboard/payments/page": "/dashboard/payments",
+  "/shop/page": "/shop",
+  "/page": "/",
+  "/dashboard/products/page": "/dashboard/products",
+  "/shop/products/page": "/shop/products",
+  "/shop/cart/page": "/shop/cart",
+  "/shop/products/[id]/page": "/shop/products/[id]"
+}

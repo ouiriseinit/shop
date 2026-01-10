@@ -18,8 +18,8 @@ import Link from "next/link";
 export type Payment = {
   id: string;
   amount: number;
-  fullName: string;
-  userId: string;
+  name: string;
+  user_id: string;
   email: string;
   status: "pending" | "processing" | "success" | "failed";
 };
@@ -44,8 +44,8 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
   {
-    accessorKey: "fullName",
-    header: "User",
+    accessorKey: "name",
+    header: "Customer",
   },
   {
     accessorKey: "email",
@@ -116,9 +116,11 @@ export const columns: ColumnDef<Payment>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href={`/users/${payment.userId}`}>View customer</Link>
+              <Link href={`/dashboard/customers/${payment.user_id}`}>View customer</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/dashboard/customers/${payment.user_id}`}>Details</Link>
+              </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

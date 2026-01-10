@@ -43,13 +43,20 @@ const AddUser = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+        console.log(data);
+        fetch('/api/customers', { method: 'POST', body: JSON.stringify(data)})
+        .catch(error => console.log(error))
+      };
+
   return (
     <SheetContent>
       <SheetHeader>
         <SheetTitle className="mb-4">Add User</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
-            <form className="space-y-8">
+            <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
                 name="fullName"

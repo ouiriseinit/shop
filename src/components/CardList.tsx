@@ -121,6 +121,7 @@ const latestTransactions = [
 ];
 
 const CardList = ({ title }: { title: string }) => {
+  
   return (
     <div className="">
       <h1 className="text-lg font-medium mb-6">{title}</h1>

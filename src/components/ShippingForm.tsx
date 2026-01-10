@@ -21,6 +21,7 @@ const ShippingForm = ({
 
   const handleShippingForm: SubmitHandler<ShippingFormInputs> = (data) => {
     setShippingForm(data);
+    fetch('/api/pay', {method: 'POST', body: JSON.stringify(data)})
     router.push("/shop/cart?step=3", { scroll: false });
   };
 

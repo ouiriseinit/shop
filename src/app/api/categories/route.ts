@@ -4,8 +4,6 @@ import { supabase } from '@/lib/supabase' // Use the @ alias to point to src/lib
 
 export async function GET(request: Request) {
   try {
-
-    // 2. Insert into Supabase
     const { data, error } = await supabase
       .from('categories')
       .select('')
@@ -18,7 +16,6 @@ export async function GET(request: Request) {
 
     console.log(data)
 
-    // 3. Respond to the frontend
     return NextResponse.json(data, { status: 200 })
 
   } catch (err) {
@@ -31,7 +28,7 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { name } = body
 
-    // 1. Console log (Visible in your VS Code terminal)
+    // 1. Log Data
     console.log('--- SYSTEM_UPLINK_RECEIVED ---')
     console.log('Name:', name)
 

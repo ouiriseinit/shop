@@ -12,6 +12,8 @@ import {
   Shirt,
   User,
   ShoppingBasket,
+  ShoppingBag,
+  Store
 } from "lucide-react";
 import {
   Sidebar,
@@ -51,25 +53,20 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "View Store",
+    url: "/shop",
+    icon: Store,
   },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+  // {
+  //   title: "Calendar",
+  //   url: "#",
+  //   icon: Calendar,
+  // },
+  // {
+  //   title: "Search",
+  //   url: "#",
+  //   icon: Search,
+  // },
 ];
 
 const AppSidebar = () => {
@@ -103,9 +100,9 @@ const AppSidebar = () => {
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
-                  {item.title === "Inbox" && (
+                  {/* {item.title === "Inbox" && (
                     <SidebarMenuBadge>24</SidebarMenuBadge>
-                  )}
+                  )} */}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -113,9 +110,9 @@ const AppSidebar = () => {
         </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>Catalog</SidebarGroupLabel>
-          <SidebarGroupAction>
+          {/* <SidebarGroupAction>
             <Plus /> <span className="sr-only">Add Product</span>
-          </SidebarGroupAction>
+          </SidebarGroupAction> */}
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -161,16 +158,16 @@ const AppSidebar = () => {
         </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>Customers</SidebarGroupLabel>
-          <SidebarGroupAction>
+          {/* <SidebarGroupAction>
             <Plus /> <span className="sr-only">Add Customer</span>
-          </SidebarGroupAction>
+          </SidebarGroupAction> */}
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/dashboard/users">
+                  <Link href="/dashboard/customers">
                     <User />
-                    All Users
+                    All Customers
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -194,15 +191,15 @@ const AppSidebar = () => {
         </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>Orders / Payments</SidebarGroupLabel>
-          <SidebarGroupAction>
+          {/* <SidebarGroupAction>
             <Plus /> <span className="sr-only">Add Order</span>
-          </SidebarGroupAction>
+          </SidebarGroupAction> */}
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/dashboard/users">
-                    <ShoppingBasket />
+                  <Link href="/dashboard/payments">
+                    <ShoppingBag />
                     All Transactions
                   </Link>
                 </SidebarMenuButton>
