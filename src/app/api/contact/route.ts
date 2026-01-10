@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase' // Use the @ alias to point to src/lib
 
+export const dynamic = "force-dynamic"; // Prevents pre-rendering at build time
+
 export async function GET(request: Request) {
   try {
     const { data, error } = await supabase
